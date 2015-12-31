@@ -28,17 +28,17 @@ namespace ProcessSimulator
             InitializeComponent();
         }
 
-        private void btnAddProcess_Click(object sender, RoutedEventArgs e)
+        private void AddProcess_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
+        private void Start_Click(object sender, RoutedEventArgs e)
         {
 
         }
