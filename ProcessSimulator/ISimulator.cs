@@ -8,6 +8,7 @@ namespace ProcessSimulator
 {
     interface ISimulator
     {
-        void Simulate(List<VirtualProcess> processes);
+        IList<VirtualProcess> ProcessList { get; set; }
+        bool IsPreemptive { get; set; }
     }
 }
