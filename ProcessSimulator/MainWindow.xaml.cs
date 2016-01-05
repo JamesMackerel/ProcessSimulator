@@ -63,22 +63,54 @@ namespace ProcessSimulator
 
             InitializeComponent();
             DataContext = this;
+
+#if DEBUG
+            ProcessList.Items.Add(new VirtualProcess(1, 3, TimeSpan.Parse("3"), DateTime.Parse("2:00")));
+#endif
         }
 
         private void AddProcess_Click(object sender, RoutedEventArgs e)
         {
+            int Pid;
+            int Priority;
+            TimeSpan Duration;
+            DateTime ArriveTime;
+
+            try
+            {
+                Pid = int.Parse(tbPid.Text);
+                Priority = int.Parse(tbPriority.Text);
+                Duration = TimeSpan.Parse(tbDuration.Text);
+                ArriveTime = DateTime.Parse(tbArriveTime.Text);
+
+                ProcessList.Items.Add(new VirtualProcess(Pid, Priority, Duration, ArriveTime));
+            }
+            catch(FormatException exception)
+            {
+                string ExceptionMessage = string.Format("{0}:{1}", exception.Source, exception.Message);
+                MessageBox.Show(ExceptionMessage);
+            }
 
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ProcessList.SelectedItem != null)
+            {
+                ProcessList.Items.Remove(ProcessList.SelectedItem);
+            }
+            else
+            {
+                MessageBox.Show("Please choose a process to delete.");
+            }
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            //get a simulator
             SimulatorFactory simulatorFactory = new SimulatorFactory();
             ISimulator simulator = simulatorFactory.getSimulator((SchedulingAlgorithm)SelectedSchedulingAlgorithm.SelectedItem, (bool)IsPreemtive.IsChecked);
+            //use the simulator
             List<VirtualProcess> p  = Processes.ToList();
             simulator.Simulate(p);
             Processes = new ObservableCollection<VirtualProcess>(p);

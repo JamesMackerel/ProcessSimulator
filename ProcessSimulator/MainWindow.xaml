@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProcessSimulator"
         mc:Ignorable="d"
-        Title="ProcessSimulator" Height="350" Width="570" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="ProcessSimulator" Height="350" Width="900" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
